@@ -1,0 +1,12 @@
+.venv/
+.research-tools/
+data/raw/
+**/__pycache__/
+**/node_modules/
+**/dist/
+**/.vite/
+**/.wrangler/
+*.log
+.env
+.env.*
+!.env.example

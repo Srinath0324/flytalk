@@ -1,0 +1,677 @@
+{
+  "annotation_rows": 211577,
+  "status_counts": {
+    "Traced": 165122,
+    "Unimportant": 10751,
+    "Glia": 11864,
+    "null": 5472,
+    "Orphan": 15925,
+    "Anchor": 611,
+    "Assign": 1832
+  },
+  "annotation_schema": "assignedOlHex1: double\nassignedOlHex2: double\nbodyId: int64\nflywireType: string\ngroup: double\ninstance: string\nsomaSide: string\nstatusLabel: dictionary<values=string, indices=int8, ordered=1>\nsuperclass: string\ntype: string\nvfbId: string\nhemibrainType: string\nitoleeHl: string\nsupertype: string\nbirthtime: string\nmancBodyid: double\nmancGroup: double\nmancType: string\nsubclass: string\nsynonyms: string\nclass: string\nrootSide: string\nsomaNeuromere: string\ntrumanHl: string\ndimorphism: string\nmatchingNotes: string\nentryNerve: string\nmancSerial: double\nmcnsSerial: double\nserialMotif: string\nfruDsx: string\nexitNerve: string\nreceptorType: string\nsomaLocation: list<item: int64>\n  child 0, item: int64\ntosomaLocation: list<item: int64>\n  child 0, item: int64\nstatus: string\n-- schema metadata --\npandas: '{\"index_columns\": [{\"kind\": \"range\", \"name\": null, \"start\": 0, \"' + 4583",
+  "populations": {
+    "LC4": {
+      "count": 126,
+      "sides": {
+        "L": 71,
+        "R": 55
+      },
+      "examples": [
+        {
+          "bodyId": 12032,
+          "instance": "LC4_L",
+          "somaSide": "L",
+          "synonyms": null
+        },
+        {
+          "bodyId": 16128,
+          "instance": "LC4_R",
+          "somaSide": "R",
+          "synonyms": null
+        }
+      ]
+    },
+    "LPLC2": {
+      "count": 185,
+      "sides": {
+        "L": 94,
+        "R": 91
+      },
+      "examples": [
+        {
+          "bodyId": 11498,
+          "instance": "LPLC2_L",
+          "somaSide": "L",
+          "synonyms": null
+        },
+        {
+          "bodyId": 14465,
+          "instance": "LPLC2_R",
+          "somaSide": "R",
+          "synonyms": null
+        }
+      ]
+    },
+    "LC10a": {
+      "count": 275,
+      "sides": {
+        "L": 135,
+        "R": 140
+      },
+      "examples": [
+        {
+          "bodyId": 10573,
+          "instance": "LC10a_L",
+          "somaSide": "L",
+          "synonyms": null
+        },
+        {
+          "bodyId": 21065,
+          "instance": "LC10a_R",
+          "somaSide": "R",
+          "synonyms": null
+        }
+      ]
+    },
+    "LC16": {
+      "count": 182,
+      "sides": {
+        "L": 88,
+        "R": 94
+      },
+      "examples": [
+        {
+          "bodyId": 20297,
+          "instance": "LC16_L",
+          "somaSide": "L",
+          "synonyms": null
+        },
+        {
+          "bodyId": 36432,
+          "instance": "LC16_R",
+          "somaSide": "R",
+          "synonyms": null
+        }
+      ]
+    },
+    "DNa02": {
+      "count": 2,
+      "sides": {
+        "R": 1,
+        "L": 1
+      },
+      "examples": [
+        {
+          "bodyId": 523769,
+          "instance": "DNa02_L",
+          "somaSide": "L",
+          "synonyms": null
+        },
+        {
+          "bodyId": 10360,
+          "instance": "DNa02_R",
+          "somaSide": "R",
+          "synonyms": null
+        }
+      ]
+    },
+    "DNp01": {
+      "count": 2,
+      "sides": {
+        "R": 1,
+        "L": 1
+      },
+      "examples": [
+        {
+          "bodyId": 10010,
+          "instance": "DNp01(GF)_L",
+          "somaSide": "L",
+          "synonyms": "Kennedy and Broadie 2018: GF"
+        },
+        {
+          "bodyId": 10001,
+          "instance": "DNp01(GF)_R",
+          "somaSide": "R",
+          "synonyms": "Kennedy and Broadie 2018: GF"
+        }
+      ]
+    },
+    "DNg100": {
+      "count": 2,
+      "sides": {
+        "L": 1,
+        "R": 1
+      },
+      "examples": [
+        {
+          "bodyId": 10045,
+          "instance": "DNg100_L",
+          "somaSide": "L",
+          "synonyms": "Sapkal 2024: BDN2"
+        },
+        {
+          "bodyId": 10056,
+          "instance": "DNg100_R",
+          "somaSide": "R",
+          "synonyms": "Sapkal 2024: BDN2"
+        }
+      ]
+    },
+    "MDN": {
+      "count": 4,
+      "sides": {
+        "R": 2,
+        "L": 2
+      },
+      "examples": [
+        {
+          "bodyId": 11288,
+          "instance": "MDN_L",
+          "somaSide": "L",
+          "synonyms": "Carreira-Rosario 2018: DNp50"
+        },
+        {
+          "bodyId": 10763,
+          "instance": "MDN_R",
+          "somaSide": "R",
+          "synonyms": "Carreira-Rosario 2018: DNp50"
+        }
+      ]
+    },
+    "DNg60": {
+      "count": 2,
+      "sides": {
+        "L": 1,
+        "R": 1
+      },
+      "examples": [
+        {
+          "bodyId": 11374,
+          "instance": "DNg60_L",
+          "somaSide": "L",
+          "synonyms": "Sterne 2021: mesa; Sterne 2021: snail; Sapkal 2024: bluebell; Sapkal 2024: BB"
+        },
+        {
+          "bodyId": 188947,
+          "instance": "DNg60_R",
+          "somaSide": "R",
+          "synonyms": "Sterne 2021: mesa; Sterne 2021: snail; Sapkal 2024: bluebell; Sapkal 2024: BB"
+        }
+      ]
+    }
+  },
+  "edges": {
+    "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+    "bytes": 1051241946,
+    "schema": "body_pre: int64\nbody_post: int64\nweight: int64\n-- schema metadata --\npandas: '{\"index_columns\": [{\"kind\": \"range\", \"name\": null, \"start\": 0, \"' + 604",
+    "batches": 2318,
+    "first_batch_rows": 65536,
+    "last_batch_rows": 9772
+  },
+  "edge_witnesses": [
+    {
+      "body_pre": 81112,
+      "body_post": 531898,
+      "weight": 172,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 12349,
+      "body_post": 531898,
+      "weight": 160,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 515900,
+      "body_post": 531898,
+      "weight": 158,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 512366,
+      "body_post": 531898,
+      "weight": 154,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17054,
+      "body_post": 11137,
+      "weight": 154,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 27624,
+      "body_post": 531898,
+      "weight": 148,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17653,
+      "body_post": 531898,
+      "weight": 147,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 24523,
+      "body_post": 531898,
+      "weight": 141,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 14888,
+      "body_post": 531898,
+      "weight": 132,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 520449,
+      "body_post": 531898,
+      "weight": 132,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 37587,
+      "body_post": 531898,
+      "weight": 132,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17548,
+      "body_post": 11137,
+      "weight": 132,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17340,
+      "body_post": 531898,
+      "weight": 131,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 518439,
+      "body_post": 531898,
+      "weight": 129,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 16128,
+      "body_post": 11137,
+      "weight": 128,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 77614,
+      "body_post": 531898,
+      "weight": 128,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 530029,
+      "body_post": 531898,
+      "weight": 128,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 21804,
+      "body_post": 11137,
+      "weight": 126,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17478,
+      "body_post": 531898,
+      "weight": 125,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 31262,
+      "body_post": 11137,
+      "weight": 123,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 23929,
+      "body_post": 11137,
+      "weight": 122,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 16809,
+      "body_post": 531898,
+      "weight": 120,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17987,
+      "body_post": 11137,
+      "weight": 119,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 16628,
+      "body_post": 11137,
+      "weight": 118,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20859,
+      "body_post": 531898,
+      "weight": 111,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 518983,
+      "body_post": 531898,
+      "weight": 111,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 511914,
+      "body_post": 531898,
+      "weight": 110,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20282,
+      "body_post": 11137,
+      "weight": 109,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 12824,
+      "body_post": 531898,
+      "weight": 108,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 518730,
+      "body_post": 531898,
+      "weight": 108,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 27750,
+      "body_post": 531898,
+      "weight": 107,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 19550,
+      "body_post": 11137,
+      "weight": 106,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 19543,
+      "body_post": 11137,
+      "weight": 106,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 27829,
+      "body_post": 531898,
+      "weight": 106,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17608,
+      "body_post": 531898,
+      "weight": 106,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 34845,
+      "body_post": 531898,
+      "weight": 106,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 15018,
+      "body_post": 531898,
+      "weight": 104,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20917,
+      "body_post": 11137,
+      "weight": 104,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 19954,
+      "body_post": 11137,
+      "weight": 101,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17364,
+      "body_post": 11137,
+      "weight": 100,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 514956,
+      "body_post": 531898,
+      "weight": 99,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20588,
+      "body_post": 11137,
+      "weight": 99,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 526286,
+      "body_post": 531898,
+      "weight": 99,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20967,
+      "body_post": 531898,
+      "weight": 99,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 17608,
+      "body_post": 10259,
+      "weight": 99,
+      "source_type": "LC4",
+      "target_type": "DNp11"
+    },
+    {
+      "body_pre": 111787,
+      "body_post": 531898,
+      "weight": 97,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 19794,
+      "body_post": 11137,
+      "weight": 96,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 22847,
+      "body_post": 11137,
+      "weight": 94,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 20542,
+      "body_post": 11137,
+      "weight": 94,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 30087,
+      "body_post": 531898,
+      "weight": 93,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    },
+    {
+      "body_pre": 32597,
+      "body_post": 531898,
+      "weight": 92,
+      "source_type": "LC4",
+      "target_type": "DNp04"
+    }
+  ],
+  "nt": {
+    "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-neurotransmitters-male-cns-v1.0.feather",
+    "bytes": 43282834,
+    "schema": "body: int64\ncell_type: string\ntotal_nt_predictions: int32\npredicted_nt_confidence: double\npredicted_nt: string\nground_truth: string\ncelltype_total_nt_predictions: int32\ncelltype_predicted_nt: string\ncelltype_predicted_nt_confidence: double\nconsensus_nt: string\n-- schema metadata --\npandas: '{\"index_columns\": [{\"kind\": \"range\", \"name\": null, \"start\": 0, \"' + 1606",
+    "batches": 29,
+    "first_batch_rows": 65536,
+    "last_batch_rows": 510
+  },
+  "nt_examples": [
+    {
+      "body": 10001,
+      "cell_type": "DNp01",
+      "total_nt_predictions": 1015,
+      "predicted_nt_confidence": 0.5004955542656235,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": null,
+      "celltype_total_nt_predictions": 1991,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.5282633322710556,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 10010,
+      "cell_type": "DNp01",
+      "total_nt_predictions": 976,
+      "predicted_nt_confidence": 0.557140683373016,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": null,
+      "celltype_total_nt_predictions": 1991,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.5282633322710556,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 10045,
+      "cell_type": "DNg100",
+      "total_nt_predictions": 7035,
+      "predicted_nt_confidence": 0.9529439618305637,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": null,
+      "celltype_total_nt_predictions": 14507,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.954530119873198,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 10056,
+      "cell_type": "DNg100",
+      "total_nt_predictions": 7472,
+      "predicted_nt_confidence": 0.9560235114457264,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": null,
+      "celltype_total_nt_predictions": 14507,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.954530119873198,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 10360,
+      "cell_type": "DNa02",
+      "total_nt_predictions": 3086,
+      "predicted_nt_confidence": 0.9420250514525982,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": "acetylcholine",
+      "celltype_total_nt_predictions": 6253,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.94632903523859,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 10763,
+      "cell_type": "MDN",
+      "total_nt_predictions": 1439,
+      "predicted_nt_confidence": 0.9416676945987759,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": "acetylcholine",
+      "celltype_total_nt_predictions": 5633,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.9511177193038494,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 11288,
+      "cell_type": "MDN",
+      "total_nt_predictions": 1407,
+      "predicted_nt_confidence": 0.9602445039629445,
+      "predicted_nt": "acetylcholine",
+      "ground_truth": "acetylcholine",
+      "celltype_total_nt_predictions": 5633,
+      "celltype_predicted_nt": "acetylcholine",
+      "celltype_predicted_nt_confidence": 0.9511177193038494,
+      "consensus_nt": "acetylcholine"
+    },
+    {
+      "body": 11374,
+      "cell_type": "DNg60",
+      "total_nt_predictions": 1146,
+      "predicted_nt_confidence": 0.8756736923534512,
+      "predicted_nt": "gaba",
+      "ground_truth": "gaba",
+      "celltype_total_nt_predictions": 2298,
+      "celltype_predicted_nt": "gaba",
+      "celltype_predicted_nt_confidence": 0.8831933063217602,
+      "consensus_nt": "gaba"
+    }
+  ]
+}
