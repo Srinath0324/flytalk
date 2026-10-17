@@ -2,6 +2,8 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, cpSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const web = path.join(root, 'web');
@@ -30,4 +32,15 @@ const assets = path.join(web, 'public', 'models');
 mkdirSync(assets, { recursive: true });
 cpSync(path.join(web, 'node_modules/@mediapipe/tasks-vision/wasm'), path.join(assets, 'wasm'), { recursive: true });
 cpSync(path.join(web, 'node_modules/@mediapipe/tasks-vision/vision_bundle.js'), path.join(assets, 'vision_bundle.js'));
+const receipt=JSON.parse(await readFile(path.join(assets,'gesture_recognizer.task.source.json'),'utf8'));
+const modelPath=path.join(assets,'gesture_recognizer.task');
+const model=await readFile(modelPath).catch(()=>null);
+const valid=bytes=>bytes&&bytes.length===receipt.bytes&&createHash('sha256').update(bytes).digest('hex')===receipt.sha256;
+if(!valid(model)) {
+  const response=await fetch(receipt.url);
+  if(!response.ok)throw new Error(`Gesture model download failed: ${response.status}`);
+  const bytes=Buffer.from(await response.arrayBuffer());
+  if(!valid(bytes))throw new Error('Gesture model integrity check failed. Retry the asset preparation.');
+  await writeFile(modelPath,bytes);
+}
 console.log('FlyTalk assets ready. Start the app with npm run dev in web/.');

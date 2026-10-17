@@ -1,9 +1,11 @@
 import type { Graph, Manifest, Neuron } from './types';
+import { MODEL_VERSION } from './engine';
 
 export function validateGraph(graph: Graph, requireCalibration = true) {
   const { manifest, neurons, sources, targets, counts, weights } = graph;
   if (manifest.schemaVersion !== 1 || manifest.dataset !== 'male-cns:v1.0') throw new Error('Unsupported connectome version. Run npm run setup.');
   if (requireCalibration && (!manifest.calibration || !manifest.calibration.available.escape)) throw new Error('Real escape pathway is not calibrated. Run npm run prepare:data.');
+  if (requireCalibration && manifest.calibration?.model !== MODEL_VERSION) throw new Error('Connectome calibration does not match this model. Run npm run calibrate.');
   if (neurons.length !== manifest.neuronCount || neurons.length === 0 || new Set(neurons.map(n => n.id)).size !== neurons.length) throw new Error('Neuron metadata is incomplete or duplicated.');
   if (![sources.length, targets.length, counts.length, weights.length].every(n => n === manifest.edgeCount) || !sources.length) throw new Error('Connection arrays are incomplete.');
   const sums = new Float64Array(neurons.length);

@@ -1,0 +1,1385 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "https://github.com/TuragaLab/flybody",
+    "revision": "d015e9bfe441bd90ae431bac24c55cb74bdbce26",
+    "license": "Apache-2.0",
+    "bodySex": "female",
+    "sourceFile": "flybody/fruitfly/assets/blender_model/drosophila.blend"
+  },
+  "coordinates": {
+    "up": "+Y",
+    "forward": "+Z",
+    "anatomicalLeft": "+X",
+    "bodyLength": 1.0,
+    "footHeight": 0.34,
+    "origin": "ventral thorax; resting lowest foot is Y=-0.34",
+    "rotationConvention": "canonical world axes at rest; apply additive rotations to saved rest quaternion",
+    "unfoldedWingSpan": 2.05947
+  },
+  "semantics": {
+    "root": "fly_root",
+    "thorax": "thorax",
+    "head": "head",
+    "abdomen": "abdomen_1",
+    "abdomenSegments": [
+      "abdomen_1",
+      "abdomen_2",
+      "abdomen_3",
+      "abdomen_4",
+      "abdomen_5",
+      "abdomen_6",
+      "abdomen_7",
+      "abdomen_8"
+    ],
+    "wingL": "wing_left",
+    "wingR": "wing_right",
+    "antennaL": "antenna_left",
+    "antennaR": "antenna_right",
+    "proboscis": "rostrum",
+    "proboscisTip": "haustellum",
+    "mouthL": "labrum_left",
+    "mouthR": "labrum_right",
+    "haltereL": "haltere_left",
+    "haltereR": "haltere_right",
+    "legs": [
+      {
+        "side": "left",
+        "pair": 1,
+        "hip": "coxa_T1_left",
+        "femur": "femur_T1_left",
+        "tibia": "tibia_T1_left",
+        "foot": "tarsus_T1_1_left",
+        "tip": "tarsal_claw_T1_left"
+      },
+      {
+        "side": "left",
+        "pair": 2,
+        "hip": "coxa_T2_left",
+        "femur": "femur_T2_left",
+        "tibia": "tibia_T2_left",
+        "foot": "tarsus_T2_1_left",
+        "tip": "tarsal_claw_T2_left"
+      },
+      {
+        "side": "left",
+        "pair": 3,
+        "hip": "coxa_T3_left",
+        "femur": "femur_T3_left",
+        "tibia": "tibia_T3_left",
+        "foot": "tarsus_T3_1_left",
+        "tip": "tarsal_claw_T3_left"
+      },
+      {
+        "side": "right",
+        "pair": 1,
+        "hip": "coxa_T1_right",
+        "femur": "femur_T1_right",
+        "tibia": "tibia_T1_right",
+        "foot": "tarsus_T1_1_right",
+        "tip": "tarsal_claw_T1_right"
+      },
+      {
+        "side": "right",
+        "pair": 2,
+        "hip": "coxa_T2_right",
+        "femur": "femur_T2_right",
+        "tibia": "tibia_T2_right",
+        "foot": "tarsus_T2_1_right",
+        "tip": "tarsal_claw_T2_right"
+      },
+      {
+        "side": "right",
+        "pair": 3,
+        "hip": "coxa_T3_right",
+        "femur": "femur_T3_right",
+        "tibia": "tibia_T3_right",
+        "foot": "tarsus_T3_1_right",
+        "tip": "tarsal_claw_T3_right"
+      }
+    ]
+  },
+  "nodes": {
+    "abdomen_1": {
+      "parent": "thorax",
+      "position": [
+        -0.0018704,
+        0.1190546,
+        -0.1067884
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0018704,
+        0.1190546,
+        -0.1067884
+      ]
+    },
+    "abdomen_2": {
+      "parent": "abdomen_1",
+      "position": [
+        0.0002341,
+        0.0096555,
+        -0.0389957
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0016363,
+        0.12871,
+        -0.145784
+      ]
+    },
+    "abdomen_3": {
+      "parent": "abdomen_2",
+      "position": [
+        0.0002343,
+        -0.0101636,
+        -0.0706941
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.001402,
+        0.1185464,
+        -0.2164781
+      ]
+    },
+    "abdomen_4": {
+      "parent": "abdomen_3",
+      "position": [
+        0.0002353,
+        -0.0335902,
+        -0.0997538
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0011667,
+        0.0849562,
+        -0.3162319
+      ]
+    },
+    "abdomen_5": {
+      "parent": "abdomen_4",
+      "position": [
+        0.0002346,
+        -0.0336116,
+        -0.0814956
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0009321,
+        0.0513446,
+        -0.3977275
+      ]
+    },
+    "abdomen_6": {
+      "parent": "abdomen_5",
+      "position": [
+        0.0002335,
+        -0.0321305,
+        -0.064078
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0006986,
+        0.0192141,
+        -0.4618055
+      ]
+    },
+    "abdomen_7": {
+      "parent": "abdomen_6",
+      "position": [
+        0.000233,
+        -0.0345148,
+        -0.0507369
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0004656,
+        -0.0153008,
+        -0.5125424
+      ]
+    },
+    "abdomen_8": {
+      "parent": "abdomen_7",
+      "position": [
+        0.000233,
+        -0.0445655,
+        -0.04309
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0002326,
+        -0.0598663,
+        -0.5556324
+      ]
+    },
+    "antenna_left": {
+      "parent": "head",
+      "position": [
+        0.0267564,
+        0.010915,
+        0.133994
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0267577,
+        0.1052798,
+        0.3685014
+      ]
+    },
+    "antenna_right": {
+      "parent": "head",
+      "position": [
+        -0.0290081,
+        0.0109938,
+        0.1347143
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0290068,
+        0.1053586,
+        0.3692217
+      ]
+    },
+    "coxa_T1_left": {
+      "parent": "thorax",
+      "position": [
+        0.0709629,
+        0.013015,
+        0.1503843
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0709629,
+        0.013015,
+        0.1503843
+      ]
+    },
+    "coxa_T1_right": {
+      "parent": "thorax",
+      "position": [
+        -0.0700642,
+        0.0129823,
+        0.1505237
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0700642,
+        0.0129823,
+        0.1505237
+      ]
+    },
+    "coxa_T2_left": {
+      "parent": "thorax",
+      "position": [
+        0.0812291,
+        -0.0386113,
+        -0.0048396
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0812291,
+        -0.0386113,
+        -0.0048396
+      ]
+    },
+    "coxa_T2_right": {
+      "parent": "thorax",
+      "position": [
+        -0.0807613,
+        -0.0380897,
+        -0.0048787
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0807613,
+        -0.0380897,
+        -0.0048787
+      ]
+    },
+    "coxa_T3_left": {
+      "parent": "thorax",
+      "position": [
+        0.0386383,
+        -0.0535938,
+        -0.0889691
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0386383,
+        -0.0535938,
+        -0.0889691
+      ]
+    },
+    "coxa_T3_right": {
+      "parent": "thorax",
+      "position": [
+        -0.0392197,
+        -0.054004,
+        -0.0889888
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0392197,
+        -0.054004,
+        -0.0889888
+      ]
+    },
+    "femur_T1_left": {
+      "parent": "coxa_T1_left",
+      "position": [
+        -0.0353545,
+        -0.1210452,
+        -0.0755378
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0356084,
+        -0.1080302,
+        0.0748465
+      ]
+    },
+    "femur_T1_right": {
+      "parent": "coxa_T1_right",
+      "position": [
+        0.0305618,
+        -0.1247522,
+        -0.070879
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0395024,
+        -0.1117699,
+        0.0796447
+      ]
+    },
+    "femur_T2_left": {
+      "parent": "coxa_T2_left",
+      "position": [
+        -0.0656047,
+        -0.0628165,
+        -0.0270405
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0156244,
+        -0.1014278,
+        -0.0318801
+      ]
+    },
+    "femur_T2_right": {
+      "parent": "coxa_T2_right",
+      "position": [
+        0.0653766,
+        -0.0632615,
+        -0.026866
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0153847,
+        -0.1013512,
+        -0.0317447
+      ]
+    },
+    "femur_T3_left": {
+      "parent": "coxa_T3_left",
+      "position": [
+        -0.0030778,
+        -0.0444036,
+        -0.0320987
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0355605,
+        -0.0979974,
+        -0.1210679
+      ]
+    },
+    "femur_T3_right": {
+      "parent": "coxa_T3_right",
+      "position": [
+        0.0043433,
+        -0.0438639,
+        -0.032032
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0348764,
+        -0.097868,
+        -0.1210208
+      ]
+    },
+    "haltere_left": {
+      "parent": "thorax",
+      "position": [
+        0.083157,
+        0.075482,
+        -0.0865372
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.083157,
+        0.075482,
+        -0.0865372
+      ]
+    },
+    "haltere_right": {
+      "parent": "thorax",
+      "position": [
+        -0.0832132,
+        0.075482,
+        -0.0865414
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.0832132,
+        0.075482,
+        -0.0865414
+      ]
+    },
+    "haustellum": {
+      "parent": "rostrum",
+      "position": [
+        0.0,
+        -0.0176938,
+        -0.1257628
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        1.2e-06,
+        -0.0303713,
+        0.2095257
+      ]
+    },
+    "head": {
+      "parent": "thorax",
+      "position": [
+        1.3e-06,
+        0.0943648,
+        0.2345074
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        1.3e-06,
+        0.0943648,
+        0.2345074
+      ]
+    },
+    "labrum_left": {
+      "parent": "haustellum",
+      "position": [
+        -0.0,
+        -0.0377056,
+        0.0590329
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        1.2e-06,
+        -0.0680769,
+        0.2685586
+      ]
+    },
+    "labrum_right": {
+      "parent": "haustellum",
+      "position": [
+        -0.0,
+        -0.0377056,
+        0.0590329
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        1.2e-06,
+        -0.0680769,
+        0.2685586
+      ]
+    },
+    "rostrum": {
+      "parent": "head",
+      "position": [
+        -1e-07,
+        -0.1070423,
+        0.1007811
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        1.2e-06,
+        -0.0126776,
+        0.3352885
+      ]
+    },
+    "tarsal_claw_T1_left": {
+      "parent": "tarsus_T1_4_left",
+      "position": [
+        0.006507,
+        -0.0252058,
+        0.0078146
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.292897,
+        -0.298287,
+        0.3473225
+      ]
+    },
+    "tarsal_claw_T1_right": {
+      "parent": "tarsus_T1_4_right",
+      "position": [
+        -0.0083558,
+        -0.0257761,
+        0.0060852
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2933316,
+        -0.2989377,
+        0.3470022
+      ]
+    },
+    "tarsal_claw_T2_left": {
+      "parent": "tarsus_T2_4_left",
+      "position": [
+        0.0216219,
+        -0.0190679,
+        0.0053896
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.5497437,
+        -0.3085694,
+        0.1260416
+      ]
+    },
+    "tarsal_claw_T2_right": {
+      "parent": "tarsus_T2_4_right",
+      "position": [
+        -0.0216299,
+        -0.0193021,
+        0.0056342
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.549352,
+        -0.3087806,
+        0.1260113
+      ]
+    },
+    "tarsal_claw_T3_left": {
+      "parent": "tarsus_T3_4_left",
+      "position": [
+        0.0118345,
+        -0.0194067,
+        -0.0210294
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.3534549,
+        -0.3072584,
+        -0.5620868
+      ]
+    },
+    "tarsal_claw_T3_right": {
+      "parent": "tarsus_T3_4_right",
+      "position": [
+        -0.0107584,
+        -0.0193723,
+        -0.020653
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.3525824,
+        -0.3070792,
+        -0.5621353
+      ]
+    },
+    "tarsus_T1_1_left": {
+      "parent": "tibia_T1_left",
+      "position": [
+        0.0580358,
+        -0.1465157,
+        0.0685867
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.2405336,
+        -0.1354559,
+        0.2824696
+      ]
+    },
+    "tarsus_T1_1_right": {
+      "parent": "tibia_T1_right",
+      "position": [
+        -0.0589901,
+        -0.1471207,
+        0.0700828
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2399229,
+        -0.1349838,
+        0.2908057
+      ]
+    },
+    "tarsus_T1_2_left": {
+      "parent": "tarsus_T1_1_left",
+      "position": [
+        0.0224964,
+        -0.0708102,
+        0.0283389
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.26303,
+        -0.2062661,
+        0.3108084
+      ]
+    },
+    "tarsus_T1_2_right": {
+      "parent": "tarsus_T1_1_right",
+      "position": [
+        -0.0183253,
+        -0.0710346,
+        0.0246184
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2582483,
+        -0.2060184,
+        0.3154241
+      ]
+    },
+    "tarsus_T1_3_left": {
+      "parent": "tarsus_T1_2_left",
+      "position": [
+        0.0136531,
+        -0.0398594,
+        0.0178427
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.2766831,
+        -0.2461255,
+        0.3286511
+      ]
+    },
+    "tarsus_T1_3_right": {
+      "parent": "tarsus_T1_2_right",
+      "position": [
+        -0.0163738,
+        -0.0400625,
+        0.0164515
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2746221,
+        -0.2460809,
+        0.3318756
+      ]
+    },
+    "tarsus_T1_4_left": {
+      "parent": "tarsus_T1_3_left",
+      "position": [
+        0.0097069,
+        -0.0269558,
+        0.0108568
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.28639,
+        -0.2730813,
+        0.3395079
+      ]
+    },
+    "tarsus_T1_4_right": {
+      "parent": "tarsus_T1_3_right",
+      "position": [
+        -0.0103537,
+        -0.0270807,
+        0.0090414
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2849757,
+        -0.2731616,
+        0.340917
+      ]
+    },
+    "tarsus_T2_1_left": {
+      "parent": "tibia_T2_left",
+      "position": [
+        0.1189879,
+        -0.1864706,
+        0.041249
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.3714912,
+        -0.1595399,
+        0.0837384
+      ]
+    },
+    "tarsus_T2_1_right": {
+      "parent": "tibia_T2_right",
+      "position": [
+        -0.1168743,
+        -0.1866346,
+        0.0409078
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.3731018,
+        -0.1595402,
+        0.0837074
+      ]
+    },
+    "tarsus_T2_2_left": {
+      "parent": "tarsus_T2_1_left",
+      "position": [
+        0.0851716,
+        -0.0723322,
+        0.0202886
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.4566628,
+        -0.2318721,
+        0.104027
+      ]
+    },
+    "tarsus_T2_2_right": {
+      "parent": "tarsus_T2_1_right",
+      "position": [
+        -0.0830027,
+        -0.072964,
+        0.0202341
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.4561045,
+        -0.2325042,
+        0.1039415
+      ]
+    },
+    "tarsus_T2_3_left": {
+      "parent": "tarsus_T2_2_left",
+      "position": [
+        0.0456463,
+        -0.0373032,
+        0.010791
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.5023091,
+        -0.2691753,
+        0.1148179
+      ]
+    },
+    "tarsus_T2_3_right": {
+      "parent": "tarsus_T2_2_right",
+      "position": [
+        -0.0459995,
+        -0.036548,
+        0.0106402
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.5021039,
+        -0.2690521,
+        0.1145816
+      ]
+    },
+    "tarsus_T2_4_left": {
+      "parent": "tarsus_T2_3_left",
+      "position": [
+        0.0258126,
+        -0.0203262,
+        0.005834
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.5281217,
+        -0.2895015,
+        0.120652
+      ]
+    },
+    "tarsus_T2_4_right": {
+      "parent": "tarsus_T2_3_right",
+      "position": [
+        -0.0256181,
+        -0.0204263,
+        0.0057954
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.5277221,
+        -0.2894785,
+        0.120377
+      ]
+    },
+    "tarsus_T3_1_left": {
+      "parent": "tibia_T3_left",
+      "position": [
+        0.0544406,
+        -0.2086505,
+        -0.1071764
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.256828,
+        -0.1732545,
+        -0.3805524
+      ]
+    },
+    "tarsus_T3_1_right": {
+      "parent": "tibia_T3_right",
+      "position": [
+        -0.0557685,
+        -0.2087239,
+        -0.1110379
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2560048,
+        -0.1733083,
+        -0.3809198
+      ]
+    },
+    "tarsus_T3_2_left": {
+      "parent": "tarsus_T3_1_left",
+      "position": [
+        0.0425667,
+        -0.0621595,
+        -0.0815272
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.2993946,
+        -0.2354141,
+        -0.4620796
+      ]
+    },
+    "tarsus_T3_2_right": {
+      "parent": "tarsus_T3_1_right",
+      "position": [
+        -0.0442486,
+        -0.0619677,
+        -0.0813625
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.3002535,
+        -0.2352759,
+        -0.4622823
+      ]
+    },
+    "tarsus_T3_3_left": {
+      "parent": "tarsus_T3_2_left",
+      "position": [
+        0.0272848,
+        -0.0318328,
+        -0.0515144
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.3266794,
+        -0.2672468,
+        -0.513594
+      ]
+    },
+    "tarsus_T3_3_right": {
+      "parent": "tarsus_T3_2_right",
+      "position": [
+        -0.027024,
+        -0.0319721,
+        -0.0517439
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.3272774,
+        -0.2672481,
+        -0.5140262
+      ]
+    },
+    "tarsus_T3_4_left": {
+      "parent": "tarsus_T3_3_left",
+      "position": [
+        0.014941,
+        -0.0206048,
+        -0.0274633
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.3416204,
+        -0.2878517,
+        -0.5410573
+      ]
+    },
+    "tarsus_T3_4_right": {
+      "parent": "tarsus_T3_3_right",
+      "position": [
+        -0.0145465,
+        -0.0204588,
+        -0.0274561
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.341824,
+        -0.2877069,
+        -0.5414823
+      ]
+    },
+    "thorax": {
+      "parent": "fly_root",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "tibia_T1_left": {
+      "parent": "femur_T1_left",
+      "position": [
+        0.1468894,
+        0.11909,
+        0.1390363
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.1824978,
+        0.0110598,
+        0.2138829
+      ]
+    },
+    "tibia_T1_right": {
+      "parent": "femur_T1_right",
+      "position": [
+        -0.1414304,
+        0.1239067,
+        0.1410782
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.1809328,
+        0.0121368,
+        0.2207229
+      ]
+    },
+    "tibia_T2_left": {
+      "parent": "femur_T2_left",
+      "position": [
+        0.236879,
+        0.1283585,
+        0.0743695
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.2525033,
+        0.0269307,
+        0.0424894
+      ]
+    },
+    "tibia_T2_right": {
+      "parent": "femur_T2_right",
+      "position": [
+        -0.2408428,
+        0.1284457,
+        0.0745443
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2562275,
+        0.0270944,
+        0.0427996
+      ]
+    },
+    "tibia_T3_left": {
+      "parent": "femur_T3_left",
+      "position": [
+        0.1668268,
+        0.1333934,
+        -0.1523081
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        0.2023873,
+        0.035396,
+        -0.273376
+      ]
+    },
+    "tibia_T3_right": {
+      "parent": "femur_T3_right",
+      "position": [
+        -0.16536,
+        0.1332836,
+        -0.148861
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worldPivot": [
+        -0.2002364,
+        0.0354156,
+        -0.2698818
+      ]
+    },
+    "wing_left": {
+      "parent": "thorax",
+      "position": [
+        0.1449841,
+        0.1354743,
+        0.0202912
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "worldPivot": [
+        0.1449841,
+        0.1354743,
+        0.0202912
+      ]
+    },
+    "wing_right": {
+      "parent": "thorax",
+      "position": [
+        -0.1459092,
+        0.1351013,
+        0.0201113
+      ],
+      "rotationEulerXYZ": [
+        0.0,
+        -1.2,
+        0.0
+      ],
+      "worldPivot": [
+        -0.1459092,
+        0.1351013,
+        0.0201113
+      ]
+    }
+  },
+  "materials": {
+    "body": "Fly_AmberCuticle",
+    "lower": "Fly_WarmUnderside",
+    "black": "Fly_DarkBristles",
+    "bristle-brown": "Fly_Bristles",
+    "brown": "Fly_WingVeinsAndClaws",
+    "red": "Fly_RubyCompoundEyes",
+    "ocelli": "Fly_Ocelli",
+    "membrane": "Fly_IridescentWingMembrane",
+    "stripe": "Fly_AbdomenBands"
+  },
+  "animationNotes": [
+    "Wing rest Y rotations are +1.2 left, -1.2 right; unfold toward 0 for flight.",
+    "All other rest rotations are identity. Preserve translation and scale.",
+    "Source anatomy is articulated. Motion is authored; this is not the flybody physics simulation.",
+    "Perch contact requires root height 0.34 above the perch surface before procedural pose offsets."
+  ],
+  "variants": {
+    "high": {
+      "url": "/models/fly/fly-high.glb",
+      "triangles": 129430,
+      "meshes": 85,
+      "bytes": 2454396,
+      "sha256": "988d6dd5f846134f740fe475a498028861bddf6fa4431879241e45057cce4c4e",
+      "bounds": {
+        "min": [
+          -0.5886985063552856,
+          -0.3399451673030853,
+          -0.8485978841781616
+        ],
+        "max": [
+          0.5887031555175781,
+          0.278677761554718,
+          0.4090840518474579
+        ]
+      }
+    },
+    "low": {
+      "url": "/models/fly/fly-low.glb",
+      "triangles": 58090,
+      "meshes": 85,
+      "bytes": 1164400,
+      "sha256": "6b88afb91db20f86262273e26bd247b3dfbcc569ce9cd822cbe1a000f3178c5a",
+      "bounds": {
+        "min": [
+          -0.5886867046356201,
+          -0.33994007110595703,
+          -0.8485978841781616
+        ],
+        "max": [
+          0.5885955095291138,
+          0.27879559993743896,
+          0.4094049334526062
+        ]
+      }
+    }
+  }
+}

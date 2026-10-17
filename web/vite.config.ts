@@ -45,10 +45,24 @@ export default defineConfig(async () => {
   const { cloudflare } = await import('@cloudflare/vite-plugin');
 
   return {
+    // MediaPipe's WASM module uses import.meta; keep production workers as
+    // modules too, so its loader follows the same path as development.
+    worker: { format: 'es' as const },
+    optimizeDeps: {
+      include: [
+        '@mediapipe/tasks-vision',
+        'three/addons/utils/BufferGeometryUtils.js',
+      ],
+    },
     css: { postcss: { plugins: [tailwindcss()] } },
-    server: isCodexSeatbeltSandbox
-      ? { watch: { useFsEvents: false, usePolling: true } }
-      : undefined,
+    server: {
+      watch: {
+        ignored: ['**/outputs/**', '**/test-results/**'],
+        ...(isCodexSeatbeltSandbox
+          ? { useFsEvents: false, usePolling: true }
+          : {}),
+      },
+    },
     plugins: [
       vinext(),
       sites(),

@@ -1,0 +1,18 @@
+{
+  "asset": "FlyTalk anatomical fruit fly",
+  "source": "TuragaLab/flybody",
+  "repository": "https://github.com/TuragaLab/flybody",
+  "revision": "d015e9bfe441bd90ae431bac24c55cb74bdbce26",
+  "sourceFile": "flybody/fruitfly/assets/blender_model/drosophila.blend",
+  "license": "Apache-2.0",
+  "licenseFile": "LICENSE-flybody.txt",
+  "modifications": [
+    "Converted bone-parented anatomy to named articulated nodes, preserving anatomical pivots.",
+    "Normalized and simplified geometry into two detail levels; retained silhouette bristles and compound eyes.",
+    "Recolored materials, added abdomen bands, prepared translucent wings, and exported GLB.",
+    "Added original procedural flight, gaze, contact targeting, feeding, and grooming in FlyTalk."
+  ],
+  "specimen": "Female anatomical source, distinct from the male specimen supplying MaleCNS wiring.",
+  "scope": "Visual avatar and authored choreography; not a validated biomechanical simulation.",
+  "notices": "The original Apache license is preserved. No separate asset-specific NOTICE was found in the inspected pinned source."
+}

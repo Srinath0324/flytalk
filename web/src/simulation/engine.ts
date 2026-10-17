@@ -15,7 +15,7 @@ export class Decoder {
   update(scores: Scores, stimulusActive: boolean, now: number): BehaviorResult {
     const ranked = CHANNELS.map(channel => ({ channel, value: scores[channel] })).sort((a, b) => b.value - a.value);
     let desired: Behavior;
-    let strength = ranked[0].value;
+    const strength = ranked[0].value;
     if (scores.escape >= 0.2 && scores.escape >= ranked[0].value - 0.1) desired = 'ESCAPE';
     else if (ranked[0].value >= 0.2 && ranked[0].value - ranked[1].value >= 0.1) desired = STATES[ranked[0].channel];
     else if (ranked[0].value >= 0.2 || stimulusActive) desired = 'CONFUSED';
@@ -88,10 +88,10 @@ export class Simulation {
     this.decoder.update(this.scores(), this.stimulusActive, this.time);
   }
 
-  snapshot(stepMs = 0): SimulationSnapshot {
+  snapshot(stepMs = 0, detailed = true): SimulationSnapshot {
     const rawScores = this.rawScores();
     return {
-      activity: this.activity.slice(), scores: this.scores(rawScores), rawScores,
+      activity: detailed ? this.activity.slice() : new Float32Array(0), scores: this.scores(rawScores), rawScores,
       activeNeurons: this.activity.reduce((count, value) => count + Number(value >= 0.01), 0),
       behavior: { ...this.decoder.state }, stimulus: this.stimulusActive ? this.stimulus.label : this.stimulus.label === 'STIMULUS WITHDRAWN' ? this.stimulus.label : 'NO STIMULUS',
       stimulusActive: this.stimulusActive, time: this.time, stepMs,

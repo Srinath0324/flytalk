@@ -13,8 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'FlyTalk — Talk Shit to a Real Connectome',
-  description: 'Interactive simulation of the real male Drosophila central nervous system connectome. Make hand gestures to stimulate actual neural pathways.',
+  icons: { icon: '/favicon.svg' },
+  title: 'FlyTalk — Small fly. Big personality.',
+  description:
+    'Befriend a tiny 3D fruit fly with hand gestures. Offer nectar, explore its miniature world, and discover a real connectome behind the personality.',
 };
 
 export default function RootLayout({

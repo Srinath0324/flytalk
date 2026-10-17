@@ -1,0 +1,25 @@
+{
+  "revision": "d015e9bfe441bd90ae431bac24c55cb74bdbce26",
+  "repository": "https://github.com/TuragaLab/flybody",
+  "files": [
+    {
+      "path": "drosophila.blend",
+      "sha256": "88c13449572924557ee77e3da2a318643b8a987ac1c7a60b77ed164faa29bead",
+      "bytes": 20751800
+    },
+    {
+      "path": "fruitfly.xml",
+      "sha256": "d14946fd0311025ecca70c8eeb5de80e1fe18700d3072be37ecbb18d33d80fd8",
+      "bytes": 65787
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    }
+  ],
+  "tool": {
+    "name": "Blender",
+    "version": "4.3.2"
+  }
+}

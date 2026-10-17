@@ -1,76 +1,348 @@
 'use client';
+/* oxlint-disable react/react-compiler -- R3F camera/vector mutation is imperative; the mounted flag deliberately gates WebGL after hydration. */
 
-import { useEffect, useRef } from 'react';
-import type { BehaviorResult } from '../simulation/types';
+import {
+  Component,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import type { ActionDirector } from '../interaction/director';
+import { nectarPosition } from '../interaction/world';
+import { Habitat } from '../scene/Habitat';
+import { FlyModel } from '../scene/FlyModel';
 
-export function FlyIllustration({ className = '' }: { className?: string }) {
-  return <svg className={`fly-art ${className}`} viewBox="0 0 240 220" fill="none" aria-label="Cartoon fruit fly" role="img">
-    <defs>
-      <radialGradient id="body-shine"><stop stopColor="#66745c"/><stop offset=".65" stopColor="#303b2c"/><stop offset="1" stopColor="#161e16"/></radialGradient>
-      <linearGradient id="wing-shine" x1="0" x2="1" y1="0" y2="1"><stop stopColor="#d6efcf" stopOpacity=".64"/><stop offset="1" stopColor="#8cad88" stopOpacity=".12"/></linearGradient>
-      <radialGradient id="eye-shine" cx=".3" cy=".2"><stop stopColor="#ff7a5b"/><stop offset=".6" stopColor="#df4133"/><stop offset="1" stopColor="#852522"/></radialGradient>
-      <pattern id="eye-facets" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 0L7 7M0 7L7 0" stroke="#6c1919" strokeOpacity=".25" strokeWidth=".7"/></pattern>
-    </defs>
-    <g className="legs legs-left" stroke="#87927a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M103 112L69 96L57 69L47 64"/><path d="M101 132L61 137L41 123L31 126"/><path d="M105 146L77 173L50 177L44 187"/>
-    </g>
-    <g className="legs legs-right" stroke="#87927a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M137 112L171 96L183 69L193 64"/><path d="M139 132L179 137L199 123L209 126"/><path d="M135 146L163 173L190 177L196 187"/>
-    </g>
-    <ellipse cx="120" cy="146" rx="26" ry="39" fill="url(#body-shine)" stroke="#7a8a6b" strokeWidth="1.5"/>
-    <path d="M97 142Q120 154 143 142M97 154Q120 166 143 154M102 167Q120 176 138 167" stroke="#111b13" strokeWidth="5"/>
-    <g className="wing wing-left"><path d="M117 112C102 81 46 37 30 53C10 76 65 128 113 137Z" fill="url(#wing-shine)" stroke="#c8dcbc" strokeOpacity=".6"/><path d="M111 127L37 59M104 120L59 111M83 96L64 57" stroke="#d3e3ca" strokeOpacity=".28"/></g>
-    <g className="wing wing-right"><path d="M123 112C138 81 194 37 210 53C230 76 175 128 127 137Z" fill="url(#wing-shine)" stroke="#c8dcbc" strokeOpacity=".6"/><path d="M129 127L203 59M136 120L181 111M157 96L176 57" stroke="#d3e3ca" strokeOpacity=".28"/></g>
-    <ellipse cx="120" cy="117" rx="24" ry="26" fill="url(#body-shine)" stroke="#8d997d"/>
-    <path d="M112 99L109 134M122 96L122 136M130 101L134 130" stroke="#a5b58c" strokeOpacity=".26"/>
-    <ellipse cx="120" cy="81" rx="31" ry="24" fill="#343b28"/>
-    <ellipse cx="99" cy="78" rx="18" ry="24" transform="rotate(-24 99 78)" fill="url(#eye-shine)" stroke="#f28b66" strokeWidth="1"/>
-    <ellipse cx="141" cy="78" rx="18" ry="24" transform="rotate(24 141 78)" fill="url(#eye-shine)" stroke="#f28b66" strokeWidth="1"/>
-    <ellipse cx="99" cy="78" rx="17" ry="23" transform="rotate(-24 99 78)" fill="url(#eye-facets)"/>
-    <ellipse cx="141" cy="78" rx="17" ry="23" transform="rotate(24 141 78)" fill="url(#eye-facets)"/>
-    <path d="M114 63L106 42M126 63L134 42" stroke="#aaba93" strokeWidth="2" strokeLinecap="round"/>
-    <circle cx="105" cy="40" r="3" fill="#aaba93"/><circle cx="135" cy="40" r="3" fill="#aaba93"/>
-    <path d="M116 88Q120 94 124 88" stroke="#d2bc96" strokeWidth="2" strokeLinecap="round"/>
-    <ellipse cx="94" cy="66" rx="4" ry="6" fill="#ffc7ab" opacity=".6"/><ellipse cx="136" cy="66" rx="4" ry="6" fill="#ffc7ab" opacity=".6"/>
-  </svg>;
+export type Quality = 'auto' | 'high' | 'low';
+const HOME_CAMERA: [number, number, number] = [0.6, 3.3, 6.7];
+const HOME_TARGET: [number, number, number] = [-1.3, 1.2, 0.5];
+interface Props {
+  director: ActionDirector;
+  quality: Quality;
+  cameraKey: number;
+  reducedMotion: boolean;
+  vigor: number;
+  bubbleRef: RefObject<HTMLDivElement | null>;
+  onMetrics?: (metrics: { fps: number; calls: number; low: boolean }) => void;
 }
 
-export function FlyStage({ behavior, ready }: { behavior: BehaviorResult; ready: boolean }) {
-  const actor = useRef<HTMLDivElement>(null);
-  const current = useRef(behavior);
-  current.current = behavior;
-  const position = useRef({ x: 50, y: 49, angle: 0, scale: 1 });
+class SceneBoundary extends Component<
+  { children: ReactNode; onRetry: () => void },
+  { error: string }
+> {
+  state = { error: '' };
+  static getDerivedStateFromError(error: Error) {
+    return { error: error.message };
+  }
+  render() {
+    return this.state.error ? (
+      <div className="scene-fallback">
+        <span className="eyebrow">HABITAT UNAVAILABLE</span>
+        <h2>A little trouble taking flight.</h2>
+        <p>{this.state.error}</p>
+        <button className="primary-button" onClick={this.props.onRetry}>
+          Try the habitat again
+        </button>
+        <small>Your manual controls and neural data are still available.</small>
+      </div>
+    ) : (
+      this.props.children
+    );
+  }
+}
+
+function Nectar({ director }: { director: ActionDirector }) {
+  const bead = useRef<THREE.Group>(null),
+    ghost = useRef<THREE.Group>(null);
+  const halo = useRef<THREE.Mesh>(null);
+  useFrame(() => {
+    const nectar = director.snapshot.nectar;
+    if (!bead.current || !ghost.current) return;
+    bead.current.visible = !!nectar && nectar.amount > 0.01;
+    ghost.current.visible = !!nectar && !nectar.committed;
+    if (!nectar) return;
+    bead.current.position.set(...nectar.position);
+    bead.current.scale.setScalar(Math.max(0.001, Math.cbrt(nectar.amount)));
+    ghost.current.position.set(...nectarPosition(nectar.perchId));
+    if (halo.current)
+      halo.current.scale.setScalar(
+        1 + Math.sin(director.snapshot.time / 350) * 0.08,
+      );
+  });
+  return (
+    <>
+      <group ref={bead} visible={false}>
+        <mesh>
+          <sphereGeometry args={[0.09, 24, 16]} />
+          <meshPhysicalMaterial
+            color="#ffcf72"
+            roughness={0.12}
+            metalness={0.08}
+            clearcoat={1}
+            emissive="#f3a532"
+            emissiveIntensity={0.6}
+          />
+        </mesh>
+        <pointLight color="#ffd17e" intensity={0.5} distance={1.5} />
+        <mesh scale={1.7}>
+          <sphereGeometry args={[0.09, 16, 12]} />
+          <meshBasicMaterial
+            color="#ffd182"
+            transparent
+            opacity={0.1}
+            depthWrite={false}
+          />
+        </mesh>
+      </group>
+      <group ref={ghost} visible={false}>
+        <mesh ref={halo} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[0.18, 0.2, 48]} />
+          <meshBasicMaterial
+            color="#f7d994"
+            transparent
+            opacity={0.8}
+            side={THREE.DoubleSide}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh position={[0, 0.02, 0]}>
+          <sphereGeometry args={[0.065, 16, 10]} />
+          <meshBasicMaterial color="#ffe5a5" transparent opacity={0.35} />
+        </mesh>
+      </group>
+    </>
+  );
+}
+
+function SceneRuntime({
+  director,
+  cameraKey,
+  bubbleRef,
+  reducedMotion,
+  onMetrics,
+  low,
+  onSlow,
+}: {
+  director: ActionDirector;
+  cameraKey: number;
+  bubbleRef: Props['bubbleRef'];
+  reducedMotion: boolean;
+  onMetrics?: Props['onMetrics'];
+  low: boolean;
+  onSlow: () => void;
+}) {
+  const controls = useRef<OrbitControlsImpl>(null);
+  const { camera, size, gl } = useThree();
+  const point = useMemo(() => new THREE.Vector3(), []);
+  const camPosition = useMemo(() => new THREE.Vector3(), []);
+  const camTarget = useMemo(() => new THREE.Vector3(), []);
+  const metrics = useRef({ frames: 0, elapsed: 0, slow: 0 });
+  const wasDemo = useRef(false);
+  const narrow = size.width < 760;
   useEffect(() => {
-    let frame = 0, last = 0;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = (time: number) => {
-      const delta = last ? Math.min((time - last) / 1000, 0.05) : 0;
-      last = time;
-      const p = position.current;
-      const state = current.current.state;
-      const speed = 10 + current.current.strength * 12;
-      let angle = 0, scale = 1;
-      if (ready && !reduce.matches) {
-        if (state === 'MOVE_LEFT') { p.x -= speed * delta; angle = -75; }
-        if (state === 'MOVE_RIGHT') { p.x += speed * delta; angle = 75; }
-        if (state === 'APPROACH') { p.y += speed * delta * 0.5; scale = 1.22; }
-        if (state === 'RETREAT') { p.y -= speed * delta * 0.5; scale = 0.83; }
-        if (state === 'ESCAPE') { p.x += Math.cos(time / 330) * delta * 40; p.y += Math.sin(time / 410) * delta * 22; angle = Math.sin(time / 100) * 30; scale = 0.85; }
-        if (state === 'CONFUSED') angle = Math.sin(time / 300) * 12;
+    camera.position.set(...HOME_CAMERA);
+    controls.current?.target.set(...HOME_TARGET);
+    controls.current?.update();
+  }, [camera, cameraKey]);
+  useFrame((_, dt) => {
+    const s = director.snapshot;
+    if (controls.current) {
+      controls.current.enabled = s.phase !== 'offering' && !s.demo;
+      if (s.demo && !reducedMotion) {
+        const close = s.phase === 'feeding' || s.phase === 'grooming';
+        camTarget.set(...s.pose.position);
+        camTarget.y -= 0.1;
+        camPosition
+          .copy(camTarget)
+          .add(
+            new THREE.Vector3(
+              close ? 1.7 : 3.4,
+              close ? 1.15 : 2.1,
+              close ? 3.3 : 6.3,
+            ),
+          );
+        camera.position.lerp(camPosition, 1 - Math.exp(-dt * 1.5));
+        controls.current.target.lerp(camTarget, 1 - Math.exp(-dt * 1.5));
+        controls.current.update();
+      } else if (wasDemo.current) {
+        camera.position.set(...HOME_CAMERA);
+        controls.current.target.set(...HOME_TARGET);
+        controls.current.update();
+      } else if (!reducedMotion && s.phase !== 'offering') {
+        point.set(...s.pose.position).project(camera);
+        if (narrow || Math.abs(point.x) > 0.55) {
+          // Keep the creature in frame without removing approach's depth change.
+          const shift =
+            (s.pose.position[0] +
+              (narrow ? 0 : 0.35) -
+              controls.current.target.x) *
+            (1 - Math.exp(-dt * 1.8));
+          camera.position.x += shift;
+          controls.current.target.x += shift;
+          controls.current.update();
+        }
       }
-      p.x = Math.max(18, Math.min(82, p.x)); p.y = Math.max(28, Math.min(68, p.y));
-      p.angle += (angle - p.angle) * Math.min(1, delta * 8); p.scale += (scale - p.scale) * Math.min(1, delta * 5);
-      if (actor.current) { actor.current.style.left = `${p.x}%`; actor.current.style.top = `${p.y}%`; actor.current.style.transform = `translate(-50%, -50%) rotate(${p.angle}deg) scale(${p.scale})`; }
-      frame = requestAnimationFrame(update);
-    };
-    frame = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(frame);
-  }, [ready]);
-  return <div className={`fly-world state-${behavior.state.toLowerCase()}`}>
-    <div className="world-grid"/><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="orbit orbit-three"/>
-    <span className="world-cross cross-one">+</span><span className="world-cross cross-two">+</span>
-    <div className="world-coordinate">ARENA 01<br/><span> D. MELANOGASTER ♂</span></div>
-    <div ref={actor} className="fly-actor"><div className="fly-shadow"/><FlyIllustration/></div>
-    <div className="specimen-label"><span className="tiny-line"/> ONE FLY. ZERO SOCIAL SKILLS.</div>
-  </div>;
+    }
+    wasDemo.current = s.demo;
+    if (bubbleRef.current) {
+      point
+        .set(s.pose.position[0], s.pose.position[1] + 0.35, s.pose.position[2])
+        .project(camera);
+      const x = (point.x * 0.5 + 0.5) * size.width,
+        y = (-point.y * 0.5 + 0.5) * size.height;
+      const bubbleWidth = Math.min(narrow ? 220 : 270, size.width - 32);
+      const left = Math.max(
+        16,
+        Math.min(
+          size.width - bubbleWidth - 16,
+          x + (x > size.width * 0.62 ? -bubbleWidth - 32 : 35),
+        ),
+      );
+      const top = Math.max(110, Math.min(size.height - 190, y - 105));
+      bubbleRef.current.style.left = `${left}px`;
+      bubbleRef.current.style.top = `${top}px`;
+      bubbleRef.current.style.setProperty(
+        '--tail-x',
+        `${Math.max(20, Math.min(bubbleWidth - 20, x - left))}px`,
+      );
+      bubbleRef.current.style.visibility = point.z < 1 ? 'visible' : 'hidden';
+    }
+    metrics.current.frames++;
+    metrics.current.elapsed += dt;
+    if (metrics.current.elapsed >= 2) {
+      const fps = Math.round(metrics.current.frames / metrics.current.elapsed);
+      onMetrics?.({ fps, calls: gl.info.render.calls, low });
+      if (fps < 35) metrics.current.slow++;
+      else metrics.current.slow = 0;
+      if (metrics.current.slow >= 3) onSlow();
+      metrics.current.frames = 0;
+      metrics.current.elapsed = 0;
+    }
+  });
+  return (
+    <OrbitControls
+      ref={controls}
+      makeDefault
+      target={HOME_TARGET}
+      enablePan={false}
+      minDistance={4.4}
+      maxDistance={11}
+      minPolarAngle={0.5}
+      maxPolarAngle={1.43}
+      minAzimuthAngle={-0.6}
+      maxAzimuthAngle={0.95}
+      enableDamping
+      dampingFactor={0.07}
+    />
+  );
+}
+
+function SceneReady({ onReady }: { onReady: () => void }) {
+  useEffect(() => onReady(), [onReady]);
+  return null;
+}
+
+export function FlyStage(props: Props) {
+  const [mounted, setMounted] = useState(false),
+    [attempt, setAttempt] = useState(0),
+    [autoLow, setAutoLow] = useState(false),
+    [lost, setLost] = useState(false),
+    [sceneReady, setSceneReady] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const low = props.quality === 'low' || (props.quality === 'auto' && autoLow);
+  const retry = () => {
+    useGLTF.clear('/models/fly/fly-high.glb');
+    useGLTF.clear('/models/fly/fly-low.glb');
+    setLost(false);
+    setSceneReady(false);
+    setAttempt((n) => n + 1);
+  };
+  return (
+    <div
+      className="habitat-canvas"
+      data-quality={low ? 'low' : 'high'}
+      data-scene-ready={sceneReady}
+    >
+      {!mounted ? (
+        <div className="scene-loading">
+          <span className="loading-orbit" />
+          Preparing a tiny world…
+        </div>
+      ) : (
+        <SceneBoundary key={attempt} onRetry={retry}>
+          {lost ? (
+            <div className="scene-fallback">
+              <h2>The habitat needs a moment.</h2>
+              <p>The graphics connection was interrupted.</p>
+              <button className="primary-button" onClick={retry}>
+                Restore habitat
+              </button>
+            </div>
+          ) : (
+            <Canvas
+              shadows="percentage"
+              dpr={low ? 1 : [1, 1.5]}
+              camera={{ position: HOME_CAMERA, fov: 34, near: 0.05, far: 60 }}
+              gl={{
+                antialias: true,
+                alpha: false,
+                powerPreference: 'high-performance',
+              }}
+              onCreated={({ gl }) => {
+                gl.toneMapping = THREE.ACESFilmicToneMapping;
+                gl.toneMappingExposure = 1.05;
+                gl.domElement.addEventListener(
+                  'webglcontextlost',
+                  (e) => {
+                    e.preventDefault();
+                    setLost(true);
+                  },
+                  { once: true },
+                );
+              }}
+              fallback={
+                <div className="scene-fallback">
+                  <h2>This habitat needs WebGL2.</h2>
+                  <p>Try Chrome or Edge with hardware acceleration enabled.</p>
+                  <button onClick={retry}>Try again</button>
+                </div>
+              }
+            >
+              <Suspense fallback={null}>
+                <Habitat low={low} />
+                <FlyModel
+                  director={props.director}
+                  low={low}
+                  vigor={props.vigor}
+                />
+                <Nectar director={props.director} />
+                {/* Compile hidden nectar and flight materials before interaction. */}
+                <Preload all />
+                <SceneReady onReady={() => setSceneReady(true)} />
+              </Suspense>
+              <SceneRuntime
+                {...props}
+                low={low}
+                onSlow={() => setAutoLow(true)}
+              />
+            </Canvas>
+          )}
+        </SceneBoundary>
+      )}
+      {mounted && !sceneReady && !lost && (
+        <div className="scene-loading">
+          <span className="loading-orbit" />
+          Waking our smallest resident…
+        </div>
+      )}
+      <div className="scene-vignette" />
+    </div>
+  );
 }

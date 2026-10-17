@@ -7,6 +7,8 @@ data/raw/
 **/.vite/
 **/.wrangler/
 *.log
+web/outputs/
+web/test-results/
 .env
 .env.*
 !.env.example
